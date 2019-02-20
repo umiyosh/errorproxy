@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: errorproxy
+  labels:
+    app: errorproxy
+spec:
+  selector:
+    matchLabels:
+      app: errorproxy
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: errorproxy
+        tier: web
+    spec:
+      containers:
+      - name: errorproxy
+        image: umiyosh/errorproxy:latest
+        ports:
+        - containerPort: 8080
