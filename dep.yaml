@@ -26,7 +26,7 @@ spec:
         - name: WORKER_CONNECTIONS
           value: '1024'
         - name: UPSTREAM_NAME
-          value: 'localhost'
+          value: 'hello-app:8080'
         - name: UPSTREAM_KEEPALIVE
           value: '2000'
         - name: ERROR_RATE

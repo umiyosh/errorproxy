@@ -20,6 +20,7 @@ push-tag: build-tag
 
 .PHONY: deploy
 deploy: push-tag
-	kubectl get pod |grep errorproxy|awk '{print $$1}'| while read pod ;do kubectl delete pod $$pod ;done
+	kubectl delete deployment errorproxy
+	kubectl create -f ./dep.yaml
 
 
