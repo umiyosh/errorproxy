@@ -18,3 +18,8 @@ push-tag: build-tag
 	docker push $(NAME):latest
 	docker push $(NAME):$(DOCKER_TAG)
 
+.PHONY: deploy
+deploy: push-tag
+	kubectl get pod |grep errorproxy|awk '{print $$1}'| while read pod ;do kubectl delete pod $$pod ;done
+
+
