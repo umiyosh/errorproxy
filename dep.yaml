@@ -29,5 +29,7 @@ spec:
           value: 'localhost'
         - name: UPSTREAM_KEEPALIVE
           value: '2000'
+        - name: ERROR_RATE
+          value: '10'
         ports:
         - containerPort: 8080
