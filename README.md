@@ -1,6 +1,6 @@
-# README Boilerplate
+# errorproxy
 
-A template of README best practices to make your README simple to understand and easy to use. 
+This container is an nginx container that returns 502 responses according to the specified error rate. This container is for recovery test.
 
 ## Table of Contents
 
@@ -11,26 +11,23 @@ A template of README best practices to make your README simple to understand and
 
 ## Installation
 
-Download to your project directory, add `README.md`, and commit:
+You can test this container with manifests of examples.
 
 ```sh
-curl -LO http://git.io/Xy0Chg
-git add README.md
-git commit -m "Use README Boilerplate"
+make deploy-init
+-> This creates deployments and services on your k8s cluster.
+```
+
+or You can use [modd](https://github.com/cortesi/modd) for test and build image with file change events driven.
+
+``` sh
+modd
+-> This builds a container image and creates deployments and services on your k8s cluster.
 ```
 
 ## Usage
 
-Replace the contents of `README.md` with your project's:
-
-- Name
-- Description
-- Installation instructions
-- Usage instructions
-- Support instructions
-- Contributing instructions
-
-Feel free to remove any sections that aren't applicable to your project.
+See [exammples](./example_manifests/).
 
 ## Support
 
