@@ -18,9 +18,14 @@ push-tag: build-tag
 	docker push $(NAME):latest
 	docker push $(NAME):$(DOCKER_TAG)
 
-.PHONY: deploy
-deploy:
+.PHONY: deploy-errorproxy
+deploy-errorproxy:
 	kubectl delete deployment errorproxy
 	kubectl create -f ./dep.yaml
 
+
+.PHONY: deploy-helloapp
+deploy-helloapp:
+	kubectl delete deployment hello-app
+	kubectl create -f ./dep-hello.yaml
 
