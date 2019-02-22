@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: errorproxy
+  name: hello-app
   labels:
-    app: errorproxy
+    app: hello
 spec:
   selector:
     matchLabels:
-      app: errorproxy
+      app: hello
       tier: web
   template:
     metadata:
       labels:
-        app: errorproxy
+        app: hello
         tier: web
     spec:
       containers:
@@ -25,15 +25,17 @@ spec:
           value: '1'
         - name: WORKER_CONNECTIONS
           value: '1024'
-        # - name: UPSTREAM_NAME
-          # value: 'hello-app:8080'
         - name: UPSTREAM_NAME
-          value: '127.0.0.1:8082'
+          value: '127.0.0.1:8080'
         - name: UPSTREAM_KEEPALIVE
           value: '2000'
         - name: ERROR_RATE
-          value: '80'
+          value: '10'
         - name: LISTEN_PORT
-          value: '8080'
+          value: '8000'
+        ports:
+        - containerPort: 8000
+      - name: hello-app
+        image: gcr.io/google-samples/hello-app:1.0
         ports:
         - containerPort: 8080
