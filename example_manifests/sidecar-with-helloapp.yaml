@@ -30,7 +30,7 @@ spec:
         - name: UPSTREAM_KEEPALIVE
           value: '2000'
         - name: ERROR_RATE
-          value: '10'
+          value: '80'
         - name: LISTEN_PORT
           value: '8000'
         ports:
