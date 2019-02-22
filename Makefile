@@ -26,25 +26,25 @@ deploy-delete:
 
 .PHONY: deploy-create
 deploy-create:
-	kubectl create -f ./example_manifests/dep.yaml
-	kubectl create -f ./example_manifests/dep-hello.yaml
+	kubectl create -f ./example_manifests/errorproxy_dep.yaml
+	kubectl create -f ./example_manifests/sidecar-with-helloapp.yaml
 
 .PHONY: deploy-errorproxy
 deploy-errorproxy:
 	kubectl delete deployment errorproxy
-	kubectl create -f ./example_manifests/dep.yaml
+	kubectl create -f ./example_manifests/errorproxy_dep.yaml
 
 
 .PHONY: deploy-helloapp
 deploy-helloapp:
 	kubectl delete deployment hello-app
-	kubectl create -f ./example_manifests/dep-hello.yaml
+	kubectl create -f ./example_manifests/sidecar-with-helloapp.yaml
 
 .PHONY: deploy-init
 deploy-init:
-	kubectl create -f ./example_manifests/dep.yaml
+	kubectl create -f ./example_manifests/errorproxy_dep.yaml
 	kubectl expose deployment errorproxy
-	kubectl create -f ./example_manifests/dep-hello.yaml
+	kubectl create -f ./example_manifests/sidecar-with-helloapp.yaml
 	kubectl expose deployment hello-app
 
 .PHONY: deploy-clean
