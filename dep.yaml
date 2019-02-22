@@ -25,11 +25,13 @@ spec:
           value: '1'
         - name: WORKER_CONNECTIONS
           value: '1024'
+        # - name: UPSTREAM_NAME
+          # value: 'hello-app:8080'
         - name: UPSTREAM_NAME
-          value: 'hello-app:8080'
+          value: 'localhost:8082'
         - name: UPSTREAM_KEEPALIVE
           value: '2000'
         - name: ERROR_RATE
-          value: '10'
+          value: '80'
         ports:
         - containerPort: 8080
