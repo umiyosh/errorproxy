@@ -1,5 +1,5 @@
 NAME := umiyosh/errorproxy
-DOCKER_TAG := v0.1
+DOCKER_TAG := v1.0
 
 .PHONY: build
 build:
@@ -19,7 +19,7 @@ push-tag: build-tag
 	docker push $(NAME):$(DOCKER_TAG)
 
 .PHONY: deploy
-deploy: push-tag
+deploy:
 	kubectl delete deployment errorproxy
 	kubectl create -f ./dep.yaml
 
