@@ -19,13 +19,13 @@ push-tag: build-tag
 	docker push $(NAME):$(DOCKER_TAG)
 
 
-.PHONY: deploy-clean
-deploy-clean:
+.PHONY: deploy-delete
+deploy-delete:
 	kubectl delete deployment errorproxy
 	kubectl delete deployment hello-app
 
-.PHONY: deploy-init
-deploy-init:
+.PHONY: deploy-create
+deploy-create:
 	kubectl create -f ./manifest/dep.yaml
 	kubectl create -f ./manifest/dep-hello.yaml
 
@@ -40,3 +40,16 @@ deploy-helloapp:
 	kubectl delete deployment hello-app
 	kubectl create -f ./manifest/dep-hello.yaml
 
+.PHONY: deploy-init
+deploy-init:
+	kubectl create -f ./manifest/dep.yaml
+	kubectl expose deployment errorproxy
+	kubectl create -f ./manifest/dep-hello.yaml
+	kubectl expose deployment hello-app
+
+.PHONY: deploy-clean
+deploy-clean:
+	kubectl delete deployment errorproxy
+	kubectl delete deployment hello-app
+	kubectl delete svc errorproxy
+	kubectl delete svc hello-app
