@@ -144,8 +144,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY nginx.template.conf /etc/nginx/nginx.template.conf
-COPY nginx.vh.template.default.conf /etc/nginx/nginx.vh.template.default.conf
+COPY ./nginx_conf/nginx.template.conf /etc/nginx/nginx.template.conf
+COPY ./nginx_conf/nginx.vh.template.default.conf /etc/nginx/nginx.vh.template.default.conf
 ADD ./entrypoint.sh /entrypoint.sh
 
 EXPOSE 80
